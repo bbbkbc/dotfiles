@@ -11,6 +11,7 @@ function M.config()
   local wk = require 'which-key'
   wk.register {
     ['<leader>e'] = { '<cmd>NvimTreeToggle<CR>', 'Explorer' },
+    ['<leader>f'] = { '<cmd>NvimTreeFocus<CR>', 'FocusExplorer' },
   }
   require('nvim-tree').setup {
     hijack_netrw = false,
