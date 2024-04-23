@@ -1,6 +1,13 @@
+
 # Ignore everything
 *
-# Include specific subdirectories and files
+
+# Explicitly include directories
+!/nvim/
+!/tmux/
+!/alacritty/
+
+# Include contents of directories
 !/nvim/**
 !/tmux/**
 !/alacritty/**
