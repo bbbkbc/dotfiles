@@ -20,7 +20,6 @@ size = 10.2
 [window]
 opacity = 1 
 dynamic_title = true
-
 dynamic_padding = true
 
 [cursor.style]
@@ -29,4 +28,10 @@ blinking = "On"
 
 [cursor]
 blink_interval = 400
+
+# [env]
+# TERM = "screen-256color"
+
+[shell]
+program = "/usr/bin/tmux"
 

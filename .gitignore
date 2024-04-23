@@ -1,6 +1,6 @@
+# Ignore everything
 *
-!tmux/
-!alacritty/
-!nvim/
-!.gitignore
-
+# Include specific subdirectories and files
+!/nvim/**
+!/tmux/**
+!/alacritty/**
