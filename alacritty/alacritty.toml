@@ -21,6 +21,7 @@ size = 10.2
 opacity = 1 
 dynamic_title = true
 dynamic_padding = true
+decorations = "None"
 
 [cursor.style]
 shape = "Beam"
@@ -29,9 +30,15 @@ blinking = "On"
 [cursor]
 blink_interval = 400
 
+[keyboard]
+bindings = [
+{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+{ key = "M", mods = "Control|Shift", action = "ToggleMaximized"}
+]
 # [env]
 # TERM = "screen-256color"
 
 [shell]
 program = "/usr/bin/tmux"
+
 
