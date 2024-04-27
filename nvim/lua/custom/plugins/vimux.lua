@@ -1,5 +1,5 @@
 local M = {
-  'AckslD/swenv.nvim',
+  'preservim/vimux',
 }
 
 return M
