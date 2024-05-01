@@ -13,15 +13,6 @@ function M.config()
     return b
   end
 
-  -- dashboard.section.header.val = {
-  -- 	[[ ★　✯   🛸                    🪐   .°•    |    ]],
-  -- 	[[    __     ° ★　•       🛰       __      / \   ]],
-  -- 	[[   / /   ____ ___  ______  _____/ /_    | O |  ]],
-  -- 	[[  / /   / __ `/ / / / __ \/ ___/ __ \   | O |  ]],
-  -- 	[[ / /___/ /_/ / /_/ / / / / /__/ / / /  /| | |\ ]],
-  -- 	[[/_____/\__,_/\__,_/_/ /_/\___/_/ /_/  /_(.|.)_\]],
-  -- }
-
   dashboard.section.buttons.val = {
     button('f', icons.ui.Files .. ' Find file', ':Telescope find_files <CR>'),
     button('n', icons.ui.NewFile .. ' New file', ':ene <BAR> startinsert <CR>'),
