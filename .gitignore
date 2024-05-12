@@ -8,11 +8,12 @@
 !/alacritty/
 !/i3/
 !/i3status/
-
+!/nitrogen/
 # Include contents of directories
 !/nvim/**
 !/tmux/**
 !/alacritty/**
 !/i3/**
 !/i3status/**
+!/nitrogen/**
 
