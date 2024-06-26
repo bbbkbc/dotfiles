@@ -155,6 +155,7 @@ function M.config()
     'isort',
     'ruff',
     'pyright',
+    'pylint',
   })
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

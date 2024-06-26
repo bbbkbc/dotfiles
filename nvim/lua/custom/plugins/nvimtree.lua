@@ -11,7 +11,7 @@ function M.config()
   local wk = require 'which-key'
   local keymap = {
     ['<leader>'] = {
-      ['e'] = { '<cmd>NvimTreeToggle<CR>', '[E]xplorer' },
+      ['t'] = { '<cmd>NvimTreeToggle<CR>', '[E]xplorer' },
       ['f'] = { '<cmd>NvimTreeFocus<CR>', '[F]ocusExplorer' },
     },
   }

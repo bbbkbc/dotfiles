@@ -1,7 +1,6 @@
 local M = {
-  { 'akinsho/toggleterm.nvim', enabled = false },
-  { 'neogitorg/neogit', enabled = false },
-  { 'folke/tokyonight.nvim', enabled = false },
+  -- Example: usage of disabled plugins
+  --  { 'akinsho/toggleterm.nvim', enabled = false },
 }
 
 return M

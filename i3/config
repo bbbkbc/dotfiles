@@ -30,6 +30,7 @@ exec --no-startup-id setxkbmap pl
 bindsym $mod+t exec alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
+
 # program launcher, other options are rofi and dmenu
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
