@@ -9,13 +9,11 @@ local M = {
 
 function M.config()
   local wk = require 'which-key'
-  local keymap = {
-    ['<leader>'] = {
-      ['t'] = { '<cmd>NvimTreeToggle<CR>', '[E]xplorer' },
-      ['f'] = { '<cmd>NvimTreeFocus<CR>', '[F]ocusExplorer' },
-    },
+  local icons = require 'custom.addons.icons'
+  wk.add {
+    { '<leader>T', '<cmd>NvimTreeToggle<CR>', desc = '[E]xplorer', mode = 'n', icon = icons.ui.Folder },
+    { '<leader>F', '<cmd>NvimTreeFocus<CR>', desc = '[F]ocusExplorer', mode = 'n', icon = icons.ui.FolderOpen },
   }
-  wk.register { keymap }
   require('nvim-tree').setup {
     hijack_netrw = false,
     filters = {

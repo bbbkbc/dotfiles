@@ -8,7 +8,7 @@ function M.config()
   which_key.setup {
     plugins = {
       marks = true,
-      registers = true,
+      -- registers = true,
       spelling = {
         enabled = true,
         suggestions = 20,
@@ -23,12 +23,12 @@ function M.config()
         g = false,
       },
     },
-    window = {
-      border = 'rounded',
-      position = 'bottom',
-      padding = { 2, 2, 2, 2 },
-    },
-    ignore_missing = true,
+    -- window = {
+    --   border = 'rounded',
+    --   position = 'bottom',
+    --   padding = { 2, 2, 2, 2 },
+    -- },
+    -- ignore_missing = true,
     show_help = false,
     show_keys = false,
     disable = {
@@ -36,13 +36,14 @@ function M.config()
       filetypes = { 'TelescopePrompt' },
     },
   }
-  which_key.register {
-    ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-    ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-    ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-    ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-    ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-  }
+  -- which_key.add {
+  --
+  --   ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+  --   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+  --   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+  --   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+  --   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+  -- }
 end
 
 return M

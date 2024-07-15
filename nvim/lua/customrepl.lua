@@ -32,7 +32,7 @@ function M.find_and_replace_in_buffer()
 
   -- Interactive search prompt
   local search_term = ''
-  local match_count = 0
+  -- local match_count = 0
   while true do
     vim.api.nvim_echo({ { 'find> ' .. search_term, 'Normal' } }, false, {})
     local char = vim.fn.getchar()
@@ -47,7 +47,7 @@ function M.find_and_replace_in_buffer()
     else
       search_term = search_term .. vim.fn.nr2char(char)
     end
-    match_count = add_highlights(search_term)
+    add_highlights(search_term)
     vim.cmd 'redraw'
   end
 
