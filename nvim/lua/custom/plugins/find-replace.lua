@@ -1,6 +1,6 @@
 local M = {
   'bbbkbc/find-replace.nvim',
-  -- branch = 'dev',
+  branch = 'dev',
 }
 
 function M.config()
