@@ -21,6 +21,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 # setup monitor layout and wallpaper
 exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --pos 5360x0 --rotate right --output DP-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --mode 3440x1440 --pos 1920x0 --rotate normal --primary
+# exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --pos 5360x0 --rotate right --output DP-2 --mode 3440x1440 --pos 1920x0 --rotate normal --primary
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id setxkbmap pl
 ## END: STARTUP APPLICATIONS ##
