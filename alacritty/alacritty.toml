@@ -40,10 +40,12 @@ bindings = [
 { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
 { key = "M", mods = "Control|Shift", action = "ToggleMaximized"}
 ]
+
+[terminal]
 # [env]
 # TERM = "screen-256color"
 
-[shell]
+[terminal.shell]
 program = "/usr/bin/tmux"
 
 
