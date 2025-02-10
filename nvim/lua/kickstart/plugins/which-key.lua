@@ -6,6 +6,7 @@ local M = {
 function M.config()
   local which_key = require 'which-key'
   which_key.setup {
+    delay = 0,
     plugins = {
       marks = true,
       -- registers = true,

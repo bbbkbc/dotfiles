@@ -94,6 +94,13 @@ function M.config()
   local servers = {
     -- clangd = {},
     -- gopls = {},
+    rust_analyzer = {
+      ['rust-analyzer'] = {
+        checkOnSave = {
+          command = 'clippy',
+        },
+      },
+    },
     pyright = {
       python = {
         analysis = {
