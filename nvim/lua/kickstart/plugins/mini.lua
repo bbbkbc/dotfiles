@@ -25,6 +25,13 @@ function M.config()
       return '%2l:%-2v'
     end,
   }
+
+  -- INFO: Jump
+  -- Jump to any character in the current line
+  --  f, F, t, T, ;, , - like in Vim
+  Jump = require 'mini.jump'
+  Jump.setup()
+
   --  Check out: https://github.com/echasnovski/mini.nvim
 end
 
