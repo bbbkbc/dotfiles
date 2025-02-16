@@ -13,6 +13,7 @@ M.config = {
 
 -- Key mappings
 M.keys = {
+  -- buffdelete
   {
     '<leader>bd',
     function()
@@ -20,6 +21,7 @@ M.keys = {
     end,
     desc = 'Delete Buffer',
   },
+  -- Lazygit
   {
     '<leader>gg',
     function()
@@ -33,6 +35,7 @@ M.keys = {
 M.init = function()
   vim.api.nvim_create_autocmd('User', {
     pattern = 'VeryLazy',
+    desc = 'Snacks Toggle',
     callback = function()
       -- Setup some globals for debugging (lazy-loaded)
       _G.dd = function(...)
@@ -58,4 +61,3 @@ M.init = function()
 end
 
 return M
--- vim: ts=2 sts=2 sw=2 et
