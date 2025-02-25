@@ -15,7 +15,7 @@ family = "JetBrains Mono Nerd Font"
 style = "Regular"
 
 [font]
-size = 9.8
+size = 10.0
 
 [colors.primary]
 background = '0x1E1E2E'
@@ -36,10 +36,10 @@ blinking = "Always"
 blink_interval = 500
 
 [keyboard]
-bindings = [
-{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
-{ key = "M", mods = "Control|Shift", action = "ToggleMaximized"}
-]
+# bindings = [
+# { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+# { key = "M", mods = "Control|Shift", action = "ToggleMaximized"}
+# ]
 
 [terminal]
 # [env]

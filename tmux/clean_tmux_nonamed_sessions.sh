@@ -8,3 +8,6 @@ tmux list-sessions -F "#{session_name}" | while read -r session; do
     tmux kill-session -t "$session"
   fi
 done
+
+tmux display-message "Non-named sessions cleaned up completed"
+ 
