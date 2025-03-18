@@ -53,10 +53,4 @@ function M.init()
   -- keymap('n', '<A-.>', '<Cmd>BufferNext<CR>', keymap_opts)
 end
 
-vim.cmd [[
-highlight BufferCurrentADDED guibg=#282a36 guifg=#9ece6a
-highlight BufferCurrentCHANGED guibg=#282a36 guifg=#7aa2f7
-highlight BufferCurrentDELETED guibg=#282a36 guifg=#f7768e
-]]
-
 return M

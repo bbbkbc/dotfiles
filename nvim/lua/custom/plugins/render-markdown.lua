@@ -4,7 +4,6 @@ local M = {
   dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
   ft = { 'markdown' },
   lazy = false,
-  opts = {},
 }
 
 function M.init()

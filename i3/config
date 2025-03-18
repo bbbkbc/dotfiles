@@ -33,6 +33,14 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id setxkbmap pl
 
 ## END: STARTUP APPLICATIONS ##
+### SECTION: CUSTOM KEYBINDINGS FOR NOTE TAKING ###
+# Launch the terminal with vim notes and set a specific class
+bindsym $mod+n exec --no-startup-id alacritty --class=Notes -e nvim ~/notes.md
+
+# Make windows with class "Notes" float and position them at the top
+for_window [class="Notes"] floating enable, border none
+
+### END: CUSTOM KEYBINDINGS FOR NOTE TAKING ###
 
 ## SECTION: APP SPECIFIC KEYBINDINGS ##
 # start a terminal

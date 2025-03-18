@@ -128,24 +128,38 @@ function M.config()
     -- gopls = {},
     rust_analyzer = {
       ['rust-analyzer'] = {
+        diagnostics = {
+          enable = true,
+        },
         checkOnSave = {
           command = 'clippy',
         },
       },
     },
     pyright = {
-      python = {
-        analysis = {
-          -- typeCheckingMode = 'off',
-          autoSearchPaths = true,
-          useLibraryCodeForTypes = true,
+      cmd = { 'pyright-langserver', '--stdio' },
+      settings = {
+        python = {
+          analysis = {
+            verboseOutput = true,
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            disableOrganizeImports = true,
+            -- diagnosticMode = 'workspace',
+          },
         },
       },
     },
     ruff = {
-      cmd = { 'ruff', 'server', '--preview' },
+      init_options = {
+        settings = {
+          logLevel = 'debug',
+        },
+      },
+      -- cmd = { 'ruff', 'server', '--preview' },
     },
     jsonls = {},
+    markdownlint = {},
     lua_ls = {
       settings = {
         Lua = {
@@ -157,7 +171,7 @@ function M.config()
     },
   }
 
-  -- require('mason').setup()
+  require('mason').setup()
 
   -- You can add other tools here that you want Mason to install
   local ensure_installed = vim.tbl_keys(servers or {})
