@@ -1,18 +1,33 @@
-local M = { -- LSP Configuration & Plugins
-  'neovim/nvim-lspconfig',
-  dependencies = {
-    -- Automatically install LSPs and related tools to stdpath for Neovim
-    { 'williamboman/mason.nvim', opts = {} },
-    'williamboman/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
+local M = { 
+     -- LSP Configuration & Plugins
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      -- Automatically install LSPs and related tools to stdpath for Neovim
+      { 'williamboman/mason.nvim', opts = {} },
+      'williamboman/mason-lspconfig.nvim',
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-    -- Useful status updates for LSP.
-    { 'j-hui/fidget.nvim', opts = {} },
-    { 'folke/neodev.nvim', opts = {} },
+      -- Useful status updates for LSP.
+      { 'j-hui/fidget.nvim', opts = {} },
+      { 'folke/neodev.nvim', opts = {} },
 
-    'hrsh7th/cmp-nvim-lsp',
-  },
-}
+      'hrsh7th/cmp-nvim-lsp',
+      -- 'saghen/blink.cmp',
+    },
+ }
+  -- {
+  --   -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+  --   -- used for completion, annotations and signatures of Neovim apis
+  --   'folke/lazydev.nvim',
+  --   ft = 'lua',
+  --   opts = {
+  --     library = {
+  --       -- Load luvit types when the `vim.uv` word is found
+  --       { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+  --     },
+  --   },
+  -- },
+-- }
 
 function M.config()
   vim.api.nvim_create_autocmd('LspAttach', {
@@ -52,6 +67,11 @@ function M.config()
       --
       -- When you move your cursor, the highlights will be cleared (the second autocommand).
       local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+      if client and client.name == 'ruff' then
+        client.server_capabilities.hoverProvider = false
+      end
+
       if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
         local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -150,6 +170,10 @@ function M.config()
           completion = {
             callSnippet = 'Replace',
           },
+          -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+          diagnostics = {
+            globals = { 'vim' }, -- Add any global variables you use in your Lua code
+          },
         },
       },
     },
@@ -164,6 +188,7 @@ function M.config()
     'ruff',
     'pyright',
     'rust_analyzer',
+    'lua_ls',
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }

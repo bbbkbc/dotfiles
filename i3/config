@@ -38,15 +38,18 @@ exec --no-startup-id setxkbmap pl
 bindsym $mod+n exec --no-startup-id alacritty --class=Notes -e nvim ~/notes.md
 
 # Make windows with class "Notes" float and position them at the top
-for_window [class="Notes"] floating enable, border none
+for_window [class="Notes"] floating enable, border none, resize set 1000 700
 
 ### END: CUSTOM KEYBINDINGS FOR NOTE TAKING ###
 
 ## SECTION: APP SPECIFIC KEYBINDINGS ##
 # start a terminal
 bindsym $mod+t exec alacritty
+bindsym $mod+w exec chromium --class=Browser --new-window
 # kill focused window
 bindsym $mod+Shift+q kill
+
+# Start a terminal chromium and teams on specific workspaces at startup
 
 # program launcher, other options are rofi and dmenu
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
