@@ -5,10 +5,14 @@ set $mod Mod4
 font pango:JetBrains Mono Nerd Font 9 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id \
+        pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id \
+        pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id \
+        pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id \
+        pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 for_window [class="^.*"] border pixel 2
 ## END: INITIAL CONFIGURATION AND VARIABLES ##
@@ -22,7 +26,10 @@ exec --no-startup-id nm-applet
 
 # setup monitor layout and wallpaper
 
-exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --pos 5360x0 --rotate right --output DP-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --mode 3440x1440 --pos 1920x0 --rotate normal --primary
+exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --pos 5360x0 \
+        --rotate right --output DP-0 --mode 1920x1080 --pos 0x0 \
+        --rotate normal --output DP-2 --mode 3440x1440 --pos 1920x0 \
+        --rotate normal --primary
 
 # local pc variables
 set $left_monitor DP-0
@@ -35,7 +42,10 @@ exec --no-startup-id setxkbmap pl
 ## END: STARTUP APPLICATIONS ##
 ### SECTION: CUSTOM KEYBINDINGS FOR NOTE TAKING ###
 # Launch the terminal with vim notes and set a specific class
-bindsym $mod+n exec --no-startup-id alacritty --class=Notes -e nvim ~/notes.md
+bindsym $mod+n exec --no-startup-id alacritty \
+        --class=Notes \
+        --working-directory ~/code/notes \
+        -e nvim notes.md
 
 # Make windows with class "Notes" float and position them at the top
 for_window [class="Notes"] floating enable, border none, resize set 1000 700

@@ -1,43 +1,26 @@
-local M = { 
-     -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      { 'williamboman/mason.nvim', opts = {} },
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
+local M = {
+  -- LSP Configuration & Plugins
+  'neovim/nvim-lspconfig',
+  dependencies = {
+    -- Automatically install LSPs and related tools to stdpath for Neovim
+    { 'williamboman/mason.nvim', opts = {} },
+    'williamboman/mason-lspconfig.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
-      { 'folke/neodev.nvim', opts = {} },
+    -- Useful status updates for LSP.
+    { 'j-hui/fidget.nvim', opts = {} },
+    { 'folke/neodev.nvim', opts = {} },
 
-      'hrsh7th/cmp-nvim-lsp',
-      -- 'saghen/blink.cmp',
-    },
- }
-  -- {
-  --   -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-  --   -- used for completion, annotations and signatures of Neovim apis
-  --   'folke/lazydev.nvim',
-  --   ft = 'lua',
-  --   opts = {
-  --     library = {
-  --       -- Load luvit types when the `vim.uv` word is found
-  --       { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-  --     },
-  --   },
-  -- },
--- }
+    'hrsh7th/cmp-nvim-lsp',
+    -- 'saghen/blink.cmp',
+  },
+}
 
 function M.config()
   vim.api.nvim_create_autocmd('LspAttach', {
+
     group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
     callback = function(event)
-      -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-      -- to define small helper and utility functions so you don't have to repeat yourself.
-      --
-      -- In this case, we create a function that lets us more easily define mappings specific
-      -- for LSP related items. It sets the mode, buffer and description for us each time.
       local map = function(keys, func, desc, mode)
         mode = mode or 'n'
         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
@@ -61,11 +44,6 @@ function M.config()
         end
       end
 
-      -- The following two autocommands are used to highlight references of the
-      -- word under your cursor when your cursor rests there for a little while.
-      --    See `:help CursorHold` for information about when this is executed
-      --
-      -- When you move your cursor, the highlights will be cleared (the second autocommand).
       local client = vim.lsp.get_client_by_id(event.data.client_id)
 
       if client and client.name == 'ruff' then
@@ -162,33 +140,60 @@ function M.config()
         },
       },
     },
-    jsonls = {},
-    markdownlint = {},
-    lua_ls = {
+    ansiblels = {
+      filetypes = { 'yaml.ansible' },
       settings = {
-        Lua = {
-          completion = {
-            callSnippet = 'Replace',
+        ansible = {
+          path = 'ansible',
+          useFullyQualifiedCollectionNames = true,
+          ansibleLint = {
+            enabled = true,
           },
-          -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-          diagnostics = {
-            globals = { 'vim' }, -- Add any global variables you use in your Lua code
+          python = {
+            interpreterPath = 'python',
+          },
+          completion = {
+            provideModuleOptionsAliases = true,
+            provideRedirectModule = true,
           },
         },
       },
     },
+    jsonls = {},
+    marksman = {},
+    dockerls = {},
+    lua_ls = {
+      settings = {
+        Lua = {
+          runtime = { version = 'LuaJIT' },
+          completion = { callSnippet = 'Replace' },
+          diagnostics = {
+            globals = {
+              'vim',
+              'require',
+            },
+          },
+          telemetry = { enable = false },
+        },
+      },
+    },
   }
+
+  for server, srv in pairs(servers) do
+    srv.capabilities = vim.tbl_deep_extend('force', {}, capabilities, srv.capabilities or {})
+    vim.lsp.config(server, srv)
+  end
 
   require('mason').setup()
 
   -- You can add other tools here that you want Mason to install
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
-    'stylua', -- Used to format Lua code
-    'ruff',
-    'pyright',
-    'rust_analyzer',
-    'lua_ls',
+    'stylua',
+    'just',
+    'taplo',
+    'yamlfmt',
+    'markdownlint',
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -196,16 +201,6 @@ function M.config()
   require('mason-lspconfig').setup {
     ensure_installed = {},
     automatic_installation = false,
-    handlers = {
-      function(server_name)
-        local server = servers[server_name] or {}
-        -- This handles overriding only values explicitly passed
-        -- by the server configuration above. Useful when disabling
-        -- certain features of an LSP (for example, turning off formatting for tsserver)
-        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-        require('lspconfig')[server_name].setup(server)
-      end,
-    },
   }
 end
 

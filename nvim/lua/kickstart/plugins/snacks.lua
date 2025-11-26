@@ -13,9 +13,9 @@ M.config = {
 
 -- Key mappings
 M.keys = {
-  -- buffdelete
+  -- Buffdelete
   {
-    '<leader>bd',
+    '<leader>Sd',
     function()
       Snacks.bufdelete()
     end,
@@ -23,7 +23,7 @@ M.keys = {
   },
   -- Lazygit
   {
-    '<leader>gg',
+    '<leader>Sg',
     function()
       Snacks.lazygit()
     end,

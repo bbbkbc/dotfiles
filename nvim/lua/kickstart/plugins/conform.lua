@@ -26,11 +26,15 @@ M.opts = {
       lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
     }
   end,
+
   formatters_by_ft = {
     lua = { 'stylua' },
-    -- Conform can also run multiple formatters sequentially
-    python = { 'isort', 'black', 'ruff' },
+    python = { 'ruff_fix', 'ruff_format' },
     rust = { 'rustfmt', lsp_format = 'fallback' },
+    just = { 'just' },
+    yaml = { 'yamlfmt' },
+    toml = { 'taplo' },
+    markdown = { 'markdownlint' },
   },
 }
 
