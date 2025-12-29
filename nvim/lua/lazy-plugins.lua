@@ -11,8 +11,6 @@
 -- NOTE: Here is where you install your plugins.
 --
 
-local M = {}
-
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- "gc" to comment visual regions/lines

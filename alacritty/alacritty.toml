@@ -15,15 +15,17 @@ family = "JetBrains Mono Nerd Font"
 style = "Regular"
 
 [font]
-size = 10.0
+size = 9.9
 
 [colors.primary]
 background = '0x1E1E2E'
-foreground = '0xCDD6F4' 
+foreground = '0xCDD6F4'
 
+[colors.cursor]
+cursor = '#b4befe'
 
 [window]
-opacity = 1 
+opacity = 1
 dynamic_title = true
 dynamic_padding = true
 decorations = "None"
@@ -47,5 +49,3 @@ blink_interval = 500
 
 [terminal.shell]
 program = "/usr/bin/tmux"
-
-

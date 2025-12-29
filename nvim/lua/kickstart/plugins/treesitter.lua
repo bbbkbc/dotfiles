@@ -4,7 +4,21 @@ local M = {
 }
 
 M.opts = {
-  ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'dockerfile', 'gitignore', 'python', 'yaml', 'rust' },
+  ensure_installed = {
+    'bash',
+    'c',
+    'html',
+    'lua',
+    'luadoc',
+    'markdown',
+    'vim',
+    'vimdoc',
+    'dockerfile',
+    'gitignore',
+    'python',
+    'yaml',
+    'rust',
+  },
   auto_install = true,
   highlight = {
     enable = true,

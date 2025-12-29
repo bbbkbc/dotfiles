@@ -6,6 +6,7 @@ local M = {
 function M.config()
   local which_key = require 'which-key'
   which_key.setup {
+    preset = 'classic',
     delay = 0,
     plugins = {
       marks = true,
@@ -24,12 +25,12 @@ function M.config()
         g = false,
       },
     },
-    -- window = {
-    --   border = 'rounded',
-    --   position = 'bottom',
-    --   padding = { 2, 2, 2, 2 },
-    -- },
-    -- ignore_missing = true,
+    sort = { 'alphanum' },
+    icons = {
+      breadcrumb = '»',
+      separator = '➜',
+      group = '',
+    },
     show_help = false,
     show_keys = false,
     disable = {
@@ -37,11 +38,30 @@ function M.config()
       filetypes = { 'TelescopePrompt' },
     },
   }
-  -- which_key.add {
-
-  -- ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  -- ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-  -- }
+  which_key.add {
+    {
+      '<leader>s',
+      group = '[s]earch',
+      desc = 'Telescope Commands',
+      icon = '🔍',
+    },
+    {
+      '<leader>S',
+      group = '[S]nacks',
+      desc = '[S]nacks.nvim Commands',
+      icon = '🍿',
+    },
+    {
+      '<leader>l',
+      group = '[L]sp secondary actions',
+      icon = '⚙️',
+    },
+    {
+      '<leader>c',
+      group = '[C]ode compannion',
+      icon = '🤖',
+    },
+  }
 end
 
 return M

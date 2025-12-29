@@ -5,34 +5,25 @@ local M = {
 }
 
 -- Configuration options
-M.config = {
+M.opts = {
   indent = { enabled = true },
   scroll = { enabled = true },
   statuscolumn = { enabled = true },
 }
 
--- Key mappings
-M.keys = {
-  -- Buffdelete
-  {
-    '<leader>Sd',
-    function()
-      Snacks.bufdelete()
-    end,
-    desc = 'Delete Buffer',
-  },
-  -- Lazygit
-  {
-    '<leader>Sg',
-    function()
-      Snacks.lazygit()
-    end,
-    desc = 'Lazygit',
-  },
-}
-
 -- Initialization function
 M.init = function()
+  local Snacks = require 'snacks'
+
+  Snacks.keymap.set('n', '<leader>Sd', function()
+    Snacks.bufdelete()
+  end, { desc = 'Delete Buffer' })
+
+  Snacks.keymap.set('n', '<leader>Sg', function()
+    Snacks.lazygit()
+  end, { desc = 'Lazygit' })
+
+  -- Lazy-load some functionality on VeryLazy event
   vim.api.nvim_create_autocmd('User', {
     pattern = 'VeryLazy',
     desc = 'Snacks Toggle',
@@ -47,15 +38,15 @@ M.init = function()
       vim.print = _G.dd -- Override print to use snacks for `:=` command
 
       -- Create some toggle mappings
-      Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>us'
-      Snacks.toggle.option('wrap', { name = 'Wrap' }):map '<leader>uw'
-      Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>uL'
-      Snacks.toggle.diagnostics():map '<leader>ud'
-      Snacks.toggle.line_number():map '<leader>ul'
-      Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map '<leader>uc'
-      Snacks.toggle.inlay_hints():map '<leader>uh'
-      Snacks.toggle.indent():map '<leader>ug'
-      Snacks.toggle.dim():map '<leader>uD'
+      Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>Sus'
+      Snacks.toggle.option('wrap', { name = 'Wrap' }):map '<leader>Suw'
+      Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>SuL'
+      Snacks.toggle.diagnostics():map '<leader>Sud'
+      Snacks.toggle.line_number():map '<leader>Sul'
+      Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map '<leader>Suc'
+      Snacks.toggle.inlay_hints():map '<leader>Suh'
+      Snacks.toggle.indent():map '<leader>Sug'
+      Snacks.toggle.dim():map '<leader>SuD'
     end,
   })
 end

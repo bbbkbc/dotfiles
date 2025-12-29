@@ -22,5 +22,17 @@ function M.config()
       exclude = {}, -- Make sure no specific exclusions are applied
     },
   }
+  vim.api.nvim_create_autocmd('BufEnter', {
+    nested = true,
+    callback = function()
+      -- ile jest okien
+      local wins = vim.api.nvim_list_wins()
+
+      -- jeśli jest tylko jedno okno i jego filetype to NvimTree → quit
+      if #wins == 1 and vim.bo.filetype == 'NvimTree' then
+        vim.cmd 'quit'
+      end
+    end,
+  })
 end
 return M

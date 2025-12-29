@@ -34,7 +34,7 @@ M.opts = {
     just = { 'just' },
     yaml = { 'yamlfmt' },
     toml = { 'taplo' },
-    markdown = { 'markdownlint' },
+    -- markdown = { 'markdownlint' },
   },
 }
 

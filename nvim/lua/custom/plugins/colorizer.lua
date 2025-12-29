@@ -1,3 +1,4 @@
+-- Color highlighter for Neovim #123
 local M = {
   'norcalli/nvim-colorizer.lua',
 }
