@@ -4,6 +4,7 @@
 
 # Explicitly include directories
 !/nvim/
+!/nvmdev/
 !/tmux/
 !/alacritty/
 !/i3/

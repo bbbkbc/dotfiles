@@ -6,6 +6,9 @@ local M = {
   },
   ft = { 'markdown' },
   lazy = false,
+  opts = {
+    html = { comment = { conceal = false } },
+  },
 }
 
 return M

@@ -3,8 +3,8 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
-vim.opt.termguicolors = false
-vim.o.termguicolors = false
+vim.opt.termguicolors = true
+-- vim.o.termguicolors = false
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.

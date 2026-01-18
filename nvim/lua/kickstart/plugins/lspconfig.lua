@@ -50,6 +50,10 @@ function M.config()
         client.server_capabilities.hoverProvider = false
       end
 
+      if client and client.name == 'llm' then
+        client.offset_encoding = 'utf-16'
+      end
+
       if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
         local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -133,7 +137,9 @@ function M.config()
         },
       },
     },
+    -- basedpyright = {},
     pyright = {},
+    -- ty = {},
     ruff = {
       init_options = {
         settings = {
