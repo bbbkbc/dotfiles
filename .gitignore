@@ -10,8 +10,11 @@
 !/i3/
 !/i3status/
 !/nitrogen/
+!/kitty/
 # Include contents of directories
+!/kitty/**
 !/nvim/**
+!/nvmdev/**
 !/tmux/**
 !/alacritty/**
 !/i3/**
