@@ -1,23 +1,11 @@
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
---
 -- [[ Global Variables ]]
-
-require 'globals'
-
+require('config.globals')
 -- [[ Setting options ]]
-require 'options'
+require('config.options')
 -- [[ Basic Keymaps ]]
-require 'keymaps'
+require('config.keymaps')
 -- [[ Autocommands ]]
-require 'autocmds'
+require('config.autocmds')
 
--- [[ Install `lazy.nvim` plugin manager ]]
-require 'lazy-bootstrap'
-
--- [[ Configure and install plugins ]]
-require 'lazy-plugins'
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- [[ Lazy Loading Configuration ]]
+require('config.lazy')
