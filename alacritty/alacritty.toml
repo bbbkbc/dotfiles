@@ -1,3 +1,6 @@
+[font]
+size = 9.9
+
 [font.bold]
 family = "JetBrains Mono Nerd Font"
 style = "Bold"
@@ -14,28 +17,25 @@ style = "Italic"
 family = "JetBrains Mono Nerd Font"
 style = "Regular"
 
-[font]
-size = 9.9
-
 [colors.primary]
-background = '0x1E1E2E'
-foreground = '0xCDD6F4'
+background = "0x1E1E2E"
+foreground = "0xCDD6F4"
 
 [colors.cursor]
-cursor = '#b4befe'
+cursor = "#b4befe"
 
 [window]
 opacity = 1
 dynamic_title = true
 dynamic_padding = true
-decorations = "None"
+decorations = "none"
+
+[cursor]
+blink_interval = 500
 
 [cursor.style]
 shape = "Beam"
 blinking = "Always"
-
-[cursor]
-blink_interval = 500
 
 [keyboard]
 # bindings = [

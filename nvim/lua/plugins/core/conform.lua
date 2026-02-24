@@ -7,7 +7,7 @@ M.keys = {
   {
     '<leader>4',
     function()
-      require('conform').format { async = true, lsp_fallback = true }
+      require('conform').format({ async = true, lsp_fallback = true })
     end,
     mode = '',
     desc = '[F]ormat buffer',
@@ -33,9 +33,16 @@ M.opts = {
     rust = { 'rustfmt', lsp_format = 'fallback' },
     just = { 'just' },
     yaml = { 'yamlfmt' },
-    toml = { 'taplo' },
+    -- toml = { 'taplo' },
     -- markdown = { 'markdownlint' },
   },
 }
+
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   pattern = '*',
+--   callback = function(args)
+--     require('conform').format({ bufnr = args.buf })
+--   end,
+-- })
 
 return M

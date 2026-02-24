@@ -7,50 +7,43 @@ local M = {
   },
 }
 
-function M.init()
-  vim.g.barbar_auto_setup = false
-  local barbar = require 'barbar'
-  local opts = {
-    animation = true,
-    clickable = false,
-    icons = {
-      button = '',
-      gitsigns = {
-        added = { enabled = true, icon = '+' },
-        changed = { enabled = true, icon = '~' },
-        deleted = { enabled = true, icon = '-' },
-      },
-      diagnostics = {
-        [vim.diagnostic.severity.ERROR] = { enabled = true },
-        [vim.diagnostic.severity.WARN] = { enabled = true },
-        [vim.diagnostic.severity.INFO] = { enabled = true },
-        [vim.diagnostic.severity.HINT] = { enabled = true },
-      },
-      modified = { button = '●' },
-      pinned = { button = '', filename = true },
+M.opts = {
+  animation = true,
+  clickable = false,
+  icons = {
+    button = '',
+    gitsigns = {
+      added = { enabled = true, icon = '+' },
+      changed = { enabled = true, icon = '~' },
+      deleted = { enabled = true, icon = '-' },
     },
-    -- Sets the maximum padding width with which to surround each tab
-    maximum_padding = 1,
-    -- Sets the minimum padding width with which to surround each tab
-    minimum_padding = 1,
-    -- Sets the maximum buffer name length.
-    maximum_length = 30,
-    -- Sets the minimum buffer name length.
-    minimum_length = 0,
-    sidebar_filetypes = {
-      NvimTree = true,
-      -- Or, specify the text used for the offset:
-      undotree = {
-        text = 'undotree',
-        align = 'right', -- *optionally* specify an alignment (either 'left', 'center', or 'right')
-      },
+    diagnostics = {
+      [vim.diagnostic.severity.ERROR] = { enabled = true },
+      [vim.diagnostic.severity.WARN] = { enabled = true },
+      [vim.diagnostic.severity.INFO] = { enabled = true },
+      [vim.diagnostic.severity.HINT] = { enabled = true },
     },
-  }
-  barbar.setup(opts)
-  -- local keymap = vim.api.nvim_set_keymap
-  -- local keymap_opts = { noremap = true, silent = true }
-  -- keymap('n', '<A-,>', '<Cmd>BufferPrevious<CR>', keymap_opts)
-  -- keymap('n', '<A-.>', '<Cmd>BufferNext<CR>', keymap_opts)
-end
+    modified = { button = '●' },
+    pinned = { button = '', filename = true },
+  },
+  -- Sets the maximum padding width with which to surround each tab
+  maximum_padding = 1,
+  -- Sets the minimum padding width with which to surround each tab
+  minimum_padding = 1,
+  -- Sets the maximum buffer name length.
+  maximum_length = 30,
+  -- Sets the minimum buffer name length.
+  minimum_length = 0,
+  sidebar_filetypes = {
+    NvimTree = true,
+    -- Or, specify the text used for the offset:
+    undotree = {
+      text = 'undotree',
+      align = 'right', -- *optionally* specify an alignment (either 'left', 'center', or 'right')
+    },
+  },
+}
+
+vim.g.barbar_auto_setup = false
 
 return M

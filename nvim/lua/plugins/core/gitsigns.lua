@@ -3,8 +3,8 @@ local M = {
 }
 
 function M.config()
-  local gitsigns = require 'gitsigns'
-  gitsigns.setup {
+  local gitsigns = require('gitsigns')
+  gitsigns.setup({
     signs = {
       add = { text = '+' },
       change = { text = '~' },
@@ -12,8 +12,7 @@ function M.config()
       topdelete = { text = '‾' },
       changedelete = { text = '~' },
     },
-  }
+  })
 end
 
 return M
--- vim: ts=2 sts=2 sw=2 et

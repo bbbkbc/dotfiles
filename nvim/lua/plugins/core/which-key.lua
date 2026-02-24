@@ -4,8 +4,8 @@ local M = {
 }
 
 function M.config()
-  local which_key = require('which-key')
-  which_key.setup({
+  local wk = require('which-key')
+  wk.setup({
     preset = 'classic',
     delay = 0,
     plugins = {
@@ -35,10 +35,9 @@ function M.config()
     show_keys = false,
     disable = {
       buftypes = {},
-      -- filetypes = { 'TelescopePrompt' },
     },
   })
-  which_key.add({
+  wk.add({
     { '<leader>s', group = '[s]earch', desc = 'Search Commands', icon = '🔍' },
     { '<leader>S', group = '[S]nacks', desc = '[S]nacks Commands', icon = '🍿' },
     { '<leader>l', group = '[L]sp secondary actions', icon = '⚙️' },
@@ -46,6 +45,7 @@ function M.config()
     { '<leader>n', group = '[N]otifications', desc = 'Show Notifications', icon = '💡' },
     { '<leader>r', group = '[R]enames', desc = 'Rename stuff', icon = '📝' },
     { '<leader>d', group = '[D]ebugger', desc = '[D]ebugger', icon = '🐞' },
+    -- { '<leader>a', group = '[A]i', desc = '[A]i tools', icon = '🤖' },
   })
 end
 

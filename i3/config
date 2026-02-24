@@ -32,6 +32,8 @@ exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --pos 5360x0 \
         --rotate normal --output DP-2 --mode 3440x1440 --pos 1920x0 \
         --rotate normal --primary
 
+
+
 # local pc variables
 set $left_monitor DP-0
 set $center_monitor DP-2
@@ -67,7 +69,6 @@ bindsym $mod+Shift+q kill
 # program launcher, other options are rofi and dmenu
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+d exec --no-startup-id ~/.config/i3/dmenu-cfg.sh
-
 
 bindsym Print exec maim -s -u | xclip -selection clipboard -t image/png -i
 bindsym Shift+Print exec maim -s | xclip -selection clipboard -t image/png
@@ -171,21 +172,25 @@ set $ws1 "1:  "
 set $ws2 "2:  "
 set $ws3 "3:  "
 set $ws4 "4:  "
+set $ws5 "5:  "
 
 workspace $ws1 output $left_monitor 
 workspace $ws2 output $center_monitor
 workspace $ws3 output $right_monitor
 workspace $ws4 output $right_monitor
+workspace $ws5 output $center_monitor
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
 
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
 
 ## END: WORKSPACE CONFIGURATION ##
 

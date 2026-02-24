@@ -14,8 +14,9 @@ M.config = function()
   })
 
   lint.linters_by_ft = {
-    -- markdown = { 'markdownlint' },
-    -- python = { 'ruff' },
+    -- markdown = { 'vale' },
+    -- python = { 'ruff', 'docformatter' },
+    -- env = { 'dotenv_linter' },
   }
 end
 

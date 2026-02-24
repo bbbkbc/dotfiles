@@ -81,6 +81,7 @@ vim.keymap.set('n', '<leader>ss', Pick('commands'), { desc = '[S]earch Commands'
 vim.keymap.set('n', '<leader>sh', Pick('help'), { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sk', Pick('keymaps'), { desc = '[S]earch [K]eymaps' })
 vim.keymap.set('n', '<leader>sd', Pick('diagnostics'), { desc = '[S]earch [D]iagnostics' })
+-- vim.keymap.set('n', '<leader>sH', Pick('highlights'), { desc = '[H]ighlights' })
 -- grep --
 vim.keymap.set('n', '<leader>sw', Pick('grep_word'), { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>s/', Pick('grep_buffers'), { desc = '[S]earch [/] in Open Buffers' })

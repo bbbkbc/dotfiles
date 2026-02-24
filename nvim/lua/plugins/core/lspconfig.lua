@@ -18,10 +18,11 @@ local M = {
 
 function M.config()
   Pick = require('addons.utils').pick
+
   -- LSP Attach Callback
   vim.api.nvim_create_autocmd('LspAttach', {
 
-    group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+    group = vim.api.nvim_create_augroup('lsp_attach', { clear = true }),
 
     callback = function(event)
       local map = function(keys, func, desc, mode)
@@ -33,28 +34,29 @@ function M.config()
       map('gr', Pick('lsp_references'), '[G]oto [R]eferences')
       map('gI', Pick('lsp_implementations'), '[G]oto [I]mplementation')
       map('<leader>D', Pick('lsp_type_definitions'), 'Type [D]efinition')
-      map('<leader>ls', Pick('lsp_document_symbols'), '[D]ocument [S]ymbols')
-      map('<leader>lw', Pick('lsp_dynamic_workspace_symbols'), '[W]orkspace Symbols')
+      map('<leader>ls', Pick('lsp_symbols'), '[D]ocument [S]ymbols')
+      map('<leader>lw', Pick('lsp_workspace_symbols'), '[W]orkspace Symbols')
       map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
       map('<leader>la', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
       map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-
-      local function client_supports_method(client, method, bufnr)
-        if vim.fn.has('nvim-0.11') == 1 then
-          return client.supports_method(method, bufnr)
-        else
-          return client.supports_method(method, { bufnr = bufnr })
-        end
-      end
+      --
 
       local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-      if client and client.name == 'ruff' then
+      if client == nil then
+        return
+      end
+
+      -- if client.name == 'pyright' then
+      --   client.server_capabilities.hoverProvider = false
+      -- end
+
+      if client.name == 'ruff' then
         client.server_capabilities.hoverProvider = false
       end
 
-      if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
-        local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+      if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+        local highlight_augroup = vim.api.nvim_create_augroup('lsp_highlight', { clear = false })
         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
           buffer = event.buf,
           group = highlight_augroup,
@@ -68,10 +70,10 @@ function M.config()
         })
 
         vim.api.nvim_create_autocmd('LspDetach', {
-          group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+          group = vim.api.nvim_create_augroup('lsp_detach', { clear = true }),
           callback = function(event2)
             vim.lsp.buf.clear_references()
-            vim.api.nvim_clear_autocmds({ group = 'kickstart-lsp-highlight', buffer = event2.buf })
+            vim.api.nvim_clear_autocmds({ group = 'lsp_highlight', buffer = event2.buf })
           end,
         })
       end
@@ -80,7 +82,7 @@ function M.config()
       -- code, if the language server you are using supports them
       --
       -- This may be unwanted, since they displace some of your code
-      if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+      if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
         map('<leader>th', function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
         end, '[T]oggle Inlay [H]ints')
@@ -122,8 +124,9 @@ function M.config()
   --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
   --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+  capabilities.general.positionEncodings = { 'utf-16' }
+  capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
   -- Enable the following language servers
   local servers = {
     lua_ls = {
@@ -153,45 +156,43 @@ function M.config()
     },
     -- python stuff servers and linters
     -- basedpyright = {},
-    pyright = {},
-    -- ty = {},
-    ruff = {
-      init_options = {
-        settings = {
-          logLevel = 'debug',
+    pyright = {
+      settings = {
+        additinalProperties = true,
+        python = {
+          analysis = {
+            -- autoSearchPaths = true,
+            -- diagnosticMode = 'openFilesOnly',
+            useLibraryCodeForTypes = true,
+            typeCheckingMode = 'strict', -- "off", "basic", or "strict"
+          },
         },
       },
     },
-    -- servers for some workflow improvements
-    ansiblels = {
-      filetypes = { 'yaml.ansible' },
-      settings = {
-        ansible = {
-          path = 'ansible',
-          useFullyQualifiedCollectionNames = true,
-          ansibleLint = {
-            enabled = true,
-          },
-          python = {
-            interpreterPath = 'python',
-          },
-          completion = {
-            provideModuleOptionsAliases = true,
-            provideRedirectModule = true,
-          },
+    -- ty = {
+    --   settings = {
+    --     ty = {
+    --       showSyntaxErrors = true,
+    --       completions = { autoImport = true },
+    --     },
+    --   },
+    -- },
+    ruff = {
+      init_options = {
+        settings = {
+          logLevel = 'info',
         },
       },
     },
     -- json formatter and linter
     jsonls = {},
-    -- markdown linters and servers
+    -- markdown and servers
     marksman = {},
-    markdownlint = {},
     -- docker language server
     dockerls = {},
     -- toml and yaml linters and formatters
-    taplo = {},
     yamlfmt = {},
+    tombi = {},
   }
 
   for server, srv in pairs(servers) do
@@ -207,6 +208,7 @@ function M.config()
   vim.list_extend(ensure_installed, {
     'stylua',
     'just',
+    'markdownlint',
   })
 
   require('mason-tool-installer').setup({ ensure_installed = ensure_installed })

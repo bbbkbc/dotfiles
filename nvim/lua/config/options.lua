@@ -61,7 +61,5 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- colorcolumn at 88 characters
-vim.opt.cc = '88'
-
--- vim: ts=2 sts=2 sw=2 et
+-- split windows will automatically resize to be equal
+vim.opt.equalalways = true
