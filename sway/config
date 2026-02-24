@@ -1,0 +1,203 @@
+## SECTION: INITIAL CONFIGURATION AND VARIABLES ##
+set $mod Mod4
+font pango:JetBrains Mono Nerd Font 9 
+for_window [class="^.*"] border pixel 1
+
+input type:keyboard {
+      xkb_layout "pl"
+  }
+
+# local pc variables
+set $left_monitor DP-1
+set $center_monitor DP-2
+set $right_monitor HDMI-A-1
+
+set $bg-main #1E1E2E
+set $bg-alt #232634 
+set $fg-main #CDD6F4
+set $separator  #89B4FA
+set $accent #a6d189
+set $warning #F38BA8
+set $selector #F5C2E7
+set $inactive #2e2e3e
+set $active #575268
+
+
+set $term kitty
+set $menu j4-dmenu-desktop --dmenu="bemenu w -i -H 22 -p ' ' --hp 5   -R 0.9  \
+--tb '$accent' --tf '$active' \
+--cb '$accent' --cf '$active' \
+--fb '$bg-main' --ff '$fg-main' \
+--nb '$bg-main' --nf '$fg-main' \
+--hb '$active' --hf '$fg-main' \
+--sb '$separator' --sf '$warning' \
+--ab '$bg-main' --af '$fg-main' \
+--fn 'JetBrains Mono Nerd Font 11'"
+
+set $browser chromium --class=Browser --new-window
+## END: INITIAL CONFIGURATION AND VARIABLES ##
+
+## SECTION: STARTUP APPLICATIONS ##
+exec nm-applet
+exec setxkbmap pl
+exec --no-startup-id waybar
+
+# setup monitor layout and wallpaper
+output HDMI-A-1 pos 5360 0 res 1920x1080 transform 90 scale 1.0
+output DP-1 pos 0 0 res 1920x1080  scale 1.0
+output DP-2 pos 1920 0 res 3440x1440 scale 1.0
+output * bg ./bg.jpeg fill
+
+
+## END: STARTUP APPLICATIONS ##
+### SECTION: CUSTOM KEYBINDINGS FOR NOTE TAKING ###
+# Launch the terminal with vim notes and set a specific class
+bindsym $mod+n exec --no-startup-id kitty \
+        --class=Notes \
+        --working-directory ~/code/notes \
+        -e nvim notes.md
+
+# Make windows with class "Notes" float and position them at the top
+for_window [class="Notes"] floating enable, border none, resize set 1000 700
+
+### END: CUSTOM KEYBINDINGS FOR NOTE TAKING ###
+
+## SECTION: APP SPECIFIC KEYBINDINGS ##
+# start a terminal
+bindsym $mod+t exec $term -e tmux
+
+bindsym $mod+w exec $browser
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# program launcher, other options are rofi and dmenu
+bindsym $mod+d exec $menu
+
+bindsym Print exec maim -s -u | xclip -selection clipboard -t image/png -i
+bindsym Shift+Print exec maim -s | xclip -selection clipboard -t image/png
+## END: APP SPECIFIC KEYBINDINGS ##
+# exec_always wl-paste --type text --watch cliphist store
+## SECTION: I3WM KEYBINDINGS ##
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+# alternatively, you can use the cursor keys:
+
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+# split in horizontal orientation
+bindsym $mod+i split h
+# split in vertical orientation
+bindsym $mod+v split v
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+# focus the parent container
+bindsym $mod+a focus parent
+# focus the child container
+#bindsym $mod+d focus child
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+R exec pkill waybar; waybar
+bindsym $mod+Shift+R exec sh -lc 'pkill -x waybar; waybar'
+
+
+## END: I3WM KEYBINDINGS ## 
+
+#SECTION: MODES WITHIN I3WM WITH THEIR KEYBINDINGS #
+# Create Log out, Reboot, Poweroff bindings
+mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff" {
+        bindsym r exec --no-startup-id systemctl reboot
+        bindsym s exec --no-startup-id systemctl suspend; mode "default"
+        bindsym l exit
+        bindsym p exec --no-startup-id systemctl poweroff
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff"
+
+
+
+# Mode to set the keyboard layout
+mode "Keboard Layout (P)olish, (U)S" {
+        bindsym p exec --no-startup-id setxkbmap pl
+        bindsym u exec --no-startup-id setxkbmap us
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+w mode "Keboard Layout (P)olish, (U)S"
+
+# Resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+## END: MODES WITHIN I3WM WITH THEIR KEYBINDINGS ##
+
+## SECTION: WORKSPACE CONFIGURATION ##
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+
+## NEW ##
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5:  "
+
+workspace $ws1 output $left_monitor 
+workspace $ws2 output $center_monitor
+workspace $ws3 output $right_monitor
+workspace $ws4 output $right_monitor
+workspace $ws5 output $center_monitor
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+

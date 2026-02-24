@@ -1,0 +1,78 @@
+* {
+  font-family: "JetBrains Mono Nerd Font";
+  /* font-size: 14px; */
+  border: none;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #1E1E2E;
+  color: #CDD6F4;
+}
+
+#workspaces button {
+  padding: 0 8px;
+  color: #6c7086;
+}
+
+#workspaces button.focused {
+  background: #a6d189;
+  color: #575268;
+}
+
+#workspaces button:hover {
+  background: transparent;
+  color: #89B4FA;
+}
+
+#clock,
+#pulseaudio,
+#tray {
+  padding: 0 10px;
+}
+
+/* ===== TOOLTIP BASE ===== */
+tooltip {
+    background: #1e1e2e;
+    border: 1px solid #89b4fa;
+    border-radius: 8px;
+    padding: 8px;
+    color: #cdd6f4;
+}
+
+/* ===== CALENDAR ===== */
+tooltip calendar {
+    background: transparent;
+    color: #cdd6f4;
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 20px;
+}
+
+/* miesiąc */
+tooltip calendar .month {
+    color: #a6d189;
+    font-weight: bold;
+}
+
+/* dni */
+tooltip calendar .day {
+    color: #cdd6f4;
+}
+
+/* dzisiejszy dzień */
+tooltip calendar .today {
+    background: #f5c2e7;
+    color: #1e1e2e;
+    border-radius: 6px;
+}
+
+/* nazwy dni tygodnia */
+tooltip calendar .weekday {
+    color: #89b4fa;
+    font-weight: bold;
+}
+
+/* numery tygodni */
+tooltip calendar .weeknumber {
+    color: #f38ba8;
+}

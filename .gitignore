@@ -11,6 +11,8 @@
 !/i3status/
 !/nitrogen/
 !/kitty/
+!/sway/
+!/waybar/
 # Include contents of directories
 !/kitty/**
 !/nvim/**
@@ -20,4 +22,5 @@
 !/i3/**
 !/i3status/**
 !/nitrogen/**
-
+!/sway/**
+!/waybar/**
