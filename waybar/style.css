@@ -1,9 +1,10 @@
 * {
   font-family: "JetBrains Mono Nerd Font";
-  /* font-size: 14px; */
+  font-size: 14px;
   border: none;
   min-height: 0;
 }
+
 
 window#waybar {
   background: #1E1E2E;
@@ -25,6 +26,12 @@ window#waybar {
   color: #89B4FA;
 }
 
+#mode {
+  padding: 0 10px;
+  color: #f38ba8;
+
+}
+
 #clock,
 #pulseaudio,
 #tray {
@@ -36,7 +43,7 @@ tooltip {
     background: #1e1e2e;
     border: 1px solid #89b4fa;
     border-radius: 8px;
-    padding: 8px;
+    padding: 15px;
     color: #cdd6f4;
 }
 
@@ -45,7 +52,7 @@ tooltip calendar {
     background: transparent;
     color: #cdd6f4;
     font-family: "JetBrains Mono Nerd Font";
-    font-size: 20px;
+    font-size: 24px;
 }
 
 /* miesiąc */

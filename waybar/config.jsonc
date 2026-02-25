@@ -8,10 +8,11 @@
 		"position": "top",
 		"height": 22,
 		"modules-left": [
-			"sway/workspaces",
+			"sway/workspaces"
+		],
+		"modules-center": [
 			"sway/mode"
 		],
-		"modules-center": [],
 		"modules-right": [
 			"wireplumber",
 			"sway/language",
@@ -23,9 +24,9 @@
 		},
 		"clock": {
 			"format": " {:%H:%M}",
-			"tooltip-format": "<tt><small>{calendar}</small></tt>",
+			"tooltip-format": "<span size='11pt' font='JetBrains Mono Nerd Font'>{calendar}</span>",
 			"calendar": {
-				"mode": "year",
+				"mode": "month",
 				"mode-mon-col": 3,
 				"weeks-pos": "right",
 				"on-scroll": 1,
@@ -55,7 +56,7 @@
 			"on-click": "pwvucontrol"
 		},
 		"sway/language": {
-			"format": " {short}"
+			"format": "󰌌 {short}"
 		},
 		"tray": {
 			"spacing": 8
@@ -70,8 +71,7 @@
 		"position": "top",
 		"height": 22,
 		"modules-left": [
-			"sway/workspaces",
-			"sway/mode"
+			"sway/workspaces"
 		],
 		"modules-center": [],
 		"modules-right": []
@@ -85,8 +85,7 @@
 		"position": "top",
 		"height": 22,
 		"modules-left": [
-			"sway/workspaces",
-			"sway/mode"
+			"sway/workspaces"
 		],
 		"modules-center": [],
 		"modules-right": []

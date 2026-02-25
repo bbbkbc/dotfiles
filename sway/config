@@ -1,11 +1,11 @@
 ## SECTION: INITIAL CONFIGURATION AND VARIABLES ##
 set $mod Mod4
 font pango:JetBrains Mono Nerd Font 9 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 input type:keyboard {
-      xkb_layout "pl"
-  }
+xkb_layout "pl"
+}
 
 # local pc variables
 set $left_monitor DP-1
@@ -24,15 +24,15 @@ set $active #575268
 
 
 set $term kitty
-set $menu j4-dmenu-desktop --dmenu="bemenu w -i -H 22 -p ' ' --hp 5   -R 0.9  \
---tb '$accent' --tf '$active' \
+set $menu j4-dmenu-desktop --dmenu="bemenu w -i -H 22 -p ' ' --hp 5 \
+--tb '$bg-main' --tf '$selector' \
 --cb '$accent' --cf '$active' \
 --fb '$bg-main' --ff '$fg-main' \
 --nb '$bg-main' --nf '$fg-main' \
 --hb '$active' --hf '$fg-main' \
 --sb '$separator' --sf '$warning' \
 --ab '$bg-main' --af '$fg-main' \
---fn 'JetBrains Mono Nerd Font 11'"
+--fn 'JetBrains Mono Nerd Font 12'"
 
 set $browser chromium --class=Browser --new-window
 ## END: INITIAL CONFIGURATION AND VARIABLES ##
@@ -40,7 +40,7 @@ set $browser chromium --class=Browser --new-window
 ## SECTION: STARTUP APPLICATIONS ##
 exec nm-applet
 exec setxkbmap pl
-exec --no-startup-id waybar
+exec waybar
 
 # setup monitor layout and wallpaper
 output HDMI-A-1 pos 5360 0 res 1920x1080 transform 90 scale 1.0
@@ -123,7 +123,9 @@ bindsym $mod+Shift+R exec sh -lc 'pkill -x waybar; waybar'
 
 #SECTION: MODES WITHIN I3WM WITH THEIR KEYBINDINGS #
 # Create Log out, Reboot, Poweroff bindings
-mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff" {
+bindsym $mod+Shift+e mode "󰐥 Power Options: [s]uspend, [l]ogout, [r]eboot, [p]oweroff"
+
+mode "󰐥 Power Options: [s]uspend, [l]ogout, [r]eboot, [p]oweroff" {
         bindsym r exec --no-startup-id systemctl reboot
         bindsym s exec --no-startup-id systemctl suspend; mode "default"
         bindsym l exit
@@ -133,28 +135,11 @@ mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+Shift+e mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff"
-
-
-
-# Mode to set the keyboard layout
-mode "Keboard Layout (P)olish, (U)S" {
-        bindsym p exec --no-startup-id setxkbmap pl
-        bindsym u exec --no-startup-id setxkbmap us
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-bindsym $mod+Shift+w mode "Keboard Layout (P)olish, (U)S"
 
 # Resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "󰩨 resize mode: [h] left, [j] down, [k] up, [l] right"
 
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
+mode "󰩨 resize mode: [h] left, [j] down, [k] up, [l] right" {
         # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
@@ -179,7 +164,7 @@ mode "resize" {
 ## NEW ##
 set $ws1 "1: "
 set $ws2 "2: "
-set $ws3 "3: "
+set $ws3 "3: 󰭹"
 set $ws4 "4: "
 set $ws5 "5:  "
 
