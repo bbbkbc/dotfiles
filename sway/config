@@ -1,7 +1,7 @@
 ## SECTION: INITIAL CONFIGURATION AND VARIABLES ##
 set $mod Mod4
 font pango:JetBrains Mono Nerd Font 9 
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
 
 input type:keyboard {
 xkb_layout "pl"
@@ -23,6 +23,7 @@ set $inactive #2e2e3e
 set $active #575268
 
 
+set $scrnshot grim -g "$(slurp)" - | wl-copy
 set $term kitty
 set $menu j4-dmenu-desktop --dmenu="bemenu w -i -H 22 -p ' ' --hp 5 \
 --tb '$bg-main' --tf '$selector' \
@@ -32,7 +33,7 @@ set $menu j4-dmenu-desktop --dmenu="bemenu w -i -H 22 -p ' ' --hp 5 \
 --hb '$active' --hf '$fg-main' \
 --sb '$separator' --sf '$warning' \
 --ab '$bg-main' --af '$fg-main' \
---fn 'JetBrains Mono Nerd Font 12'"
+--fn 'JetBrains Mono Nerd Font 11'"
 
 set $browser chromium --class=Browser --new-window
 ## END: INITIAL CONFIGURATION AND VARIABLES ##
@@ -73,8 +74,8 @@ bindsym $mod+Shift+q kill
 # program launcher, other options are rofi and dmenu
 bindsym $mod+d exec $menu
 
-bindsym Print exec maim -s -u | xclip -selection clipboard -t image/png -i
-bindsym Shift+Print exec maim -s | xclip -selection clipboard -t image/png
+#print screen and copy to clipboard
+bindsym Print exec $scrnshot
 ## END: APP SPECIFIC KEYBINDINGS ##
 # exec_always wl-paste --type text --watch cliphist store
 ## SECTION: I3WM KEYBINDINGS ##
