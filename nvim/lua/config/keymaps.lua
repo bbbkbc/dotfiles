@@ -25,7 +25,7 @@ vim.keymap.set('n', '<A-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<A-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Resize panes using ALT + Ctrl + hjkl
-vim.keymap.set('n', '<C-M-l>', ':vertical resize -3<CR>', { silent = true })
-vim.keymap.set('n', '<C-M-h>', ':vertical resize +3<CR>', { silent = true })
-vim.keymap.set('n', '<C-M-j>', ':resize +2<CR>', { silent = true })
-vim.keymap.set('n', '<C-M-k>', ':resize -2<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-M-l>', ':vertical resize -3<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-M-h>', ':vertical resize +3<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-M-j>', ':resize +2<CR>', { silent = true })
+-- vim.keymap.set('n', '<C-M-k>', ':resize -2<CR>', { silent = true })

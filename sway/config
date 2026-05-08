@@ -54,12 +54,12 @@ output * bg ./bg.jpeg fill
 ### SECTION: CUSTOM KEYBINDINGS FOR NOTE TAKING ###
 # Launch the terminal with vim notes and set a specific class
 bindsym $mod+n exec --no-startup-id kitty \
-        --class=Notes \
+        --class=notes \
         --working-directory ~/code/notes \
         -e nvim notes.md
 
 # Make windows with class "Notes" float and position them at the top
-for_window [class="Notes"] floating enable, border none, resize set 1000 700
+for_window [app_id="notes"] floating enable, border none, resize set 1000 700
 
 ### END: CUSTOM KEYBINDINGS FOR NOTE TAKING ###
 
@@ -80,10 +80,10 @@ bindsym Print exec $scrnshot
 # exec_always wl-paste --type text --watch cliphist store
 ## SECTION: I3WM KEYBINDINGS ##
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+# bindsym $mod+h focus left
+# bindsym $mod+j focus down
+# bindsym $mod+k focus up
+# bindsym $mod+l focus right
 # alternatively, you can use the cursor keys:
 
 bindsym $mod+Down focus down
@@ -115,7 +115,7 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+C reload
 # bindsym $mod+Shift+R exec pkill waybar; waybar
 bindsym $mod+Shift+R exec sh -lc 'pkill -x waybar; waybar'
 
@@ -168,22 +168,29 @@ set $ws2 "2: "
 set $ws3 "3: 󰭹"
 set $ws4 "4: "
 set $ws5 "5:  "
+set $ws6 "6: "
+set $ws7 "7: "
 
 workspace $ws1 output $left_monitor 
 workspace $ws2 output $center_monitor
 workspace $ws3 output $right_monitor
 workspace $ws4 output $right_monitor
 workspace $ws5 output $center_monitor
+workspace $ws6 output $center_monitor
+workspace $ws7 output $center_monitor
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
 
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
-
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
