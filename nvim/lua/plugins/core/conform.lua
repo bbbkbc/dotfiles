@@ -33,16 +33,7 @@ M.opts = {
     rust = { 'rustfmt', lsp_format = 'fallback' },
     just = { 'just' },
     yaml = { 'yamlfmt' },
-    -- toml = { 'taplo' },
-    -- markdown = { 'markdownlint' },
   },
 }
-
--- vim.api.nvim_create_autocmd('BufWritePre', {
---   pattern = '*',
---   callback = function(args)
---     require('conform').format({ bufnr = args.buf })
---   end,
--- })
 
 return M

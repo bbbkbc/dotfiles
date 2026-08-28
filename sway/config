@@ -39,10 +39,10 @@ set $browser chromium --class=Browser --new-window
 ## END: INITIAL CONFIGURATION AND VARIABLES ##
 
 ## SECTION: STARTUP APPLICATIONS ##
+
 exec nm-applet
 exec setxkbmap pl
 exec waybar
-
 # setup monitor layout and wallpaper
 output HDMI-A-1 pos 5360 0 res 1920x1080 transform 90 scale 1.0
 output DP-1 pos 0 0 res 1920x1080  scale 1.0

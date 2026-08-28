@@ -1,53 +1,53 @@
-local M = {
-  'milanglacier/minuet-ai.nvim',
-}
+-- local M = {
+--   'milanglacier/minuet-ai.nvim',
+--   dependencies = {},
+-- }
+--
+-- function M.config()
+--   local minuet = require('minuet')
+--   minuet.setup({
+--     provider = 'openai_fim_compatible',
+--     n_completions = 1,
+--     context_window = 512,
+--     virtualtext = {
+--       -- enable = true,
+--       auto_trigger_ft = { 'python', 'lua', 'cpp', 'rust' },
+--       keymap = {
+--         -- Skróty klawiszowe do obsługi szarego tekstu (ustaw pod siebie):
+--         accept = '<A-y>', -- Alt + y akceptuje całą podpowiedź
+--         accept_line = '<A-l>', -- Alt + l akceptuje tylko bieżącą linię podpowiedzi
+--         next = '<A-]>', -- Alt + ] pokazuje następną alternatywę (jeśli n_completions > 1)
+--         prev = '<A-[>', -- Alt + [ pokazuje poprzednią alternatywę
+--         dismiss = '<A-e>', -- Alt + e zamyka podpowiedź AI
+--       },
+--     },
+--     provider_options = {
+--       openai_fim_compatible = {
+--         name = 'LocalAI',
+--         end_point = 'http://127.0.0.1:8080/v1/completions',
+--         api_key = 'TERM',
+--         model = 'QCODER',
+--         stream = true,
+--         optional = {
+--           max_tokens = 56,
+--           stop = { '\n\n' },
+--         },
+--         template = {
+--           prompt = function(context_before_cursor, context_after_cursor, _)
+--             return '<|fim_prefix|>' .. context_before_cursor .. '<|fim_suffix|>' .. context_after_cursor .. '<|fim_middle|>'
+--           end,
+--           suffix = false,
+--         },
+--       },
+--     },
+--
+--     lsp = {
+--       enabled_ft = {},
+--       completion = {
+--         enabled_auto_trigger_ft = {},
+--       },
+--     },
+--   })
+-- end
 
-function M.config()
-  local minuet = require('minuet')
-  minuet.setup({
-    provider = 'openai_fim_compatible',
-    n_completions = 1, -- recommend for local model for resource saving
-    -- I recommend beginning with a small context window size and incrementally
-    -- expanding it, depending on your local computing power. A context window
-    -- of 512, serves as an good starting point to estimate your computing
-    -- power. Once you have a reliable estimate of your local computing power,
-    -- you should adjust the context window to a larger value.
-    context_window = 512,
-    provider_options = {
-      openai_fim_compatible = {
-        model = 'qwen2.5-coder:14b',
-        name = 'ollama',
-        system = 'see [Prompt] section for the default value',
-        few_shots = 'see [Prompt] section for the default value',
-        chat_input = 'See [Prompt Section for default value]',
-        end_point = 'http://localhost:11434/v1/completions',
-        api_key = 'TERM',
-        stream = true,
-        optional = {
-          stop = nil,
-          max_tokens = 56,
-          top_p = 0.9,
-        },
-      },
-    },
-  })
-
-  local cmp = require('cmp')
-  cmp.setup({
-    sources = {
-      {
-        { name = 'minuet' },
-      },
-    },
-    performance = {
-      fetching_timeout = 2000,
-    },
-
-    mapping = {
-      ['<A-y>'] = require('minuet').make_cmp_map(),
-      -- and your other keymappings
-    },
-  })
-end
-
-return M
+-- return M

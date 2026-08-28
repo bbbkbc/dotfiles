@@ -14,6 +14,9 @@ M.config = function()
   })
 
   lint.linters_by_ft = {
+    html = {}, -- Empty table disables linting for html
+    jinja = {},
+    jinja2 = {},
     -- markdown = { 'vale' },
     -- python = { 'ruff', 'docformatter' },
     -- env = { 'dotenv_linter' },

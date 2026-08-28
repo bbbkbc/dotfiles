@@ -42,6 +42,7 @@ return {
       luasnip.config.setup({})
 
       cmp.setup({
+        -- performance = { fetching_timeout = 2000 },
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -91,14 +92,13 @@ return {
               luasnip.jump(-1)
             end
           end, { 'i', 's' }),
-
-          -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-          --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         }),
+
         sources = {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'buffer' },
           { name = 'render-markdown' },
         },
       })

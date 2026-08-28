@@ -184,6 +184,8 @@ function M.config()
         },
       },
     },
+    -- html/j2
+
     -- json formatter and linter
     jsonls = {},
     -- markdown and servers
@@ -193,6 +195,21 @@ function M.config()
     -- toml and yaml linters and formatters
     yamlfmt = {},
     tombi = {},
+    -- html and javascript
+    html = {
+      on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+      end,
+    },
+    eslint = {},
+
+    -- javascript = {},
+    -- typescript = {},
+    -- css = {},
+    -- scss = {},
+
+    --
   }
 
   for server, srv in pairs(servers) do
@@ -209,6 +226,7 @@ function M.config()
     'stylua',
     'just',
     'markdownlint',
+    'djlint',
   })
 
   require('mason-tool-installer').setup({ ensure_installed = ensure_installed })

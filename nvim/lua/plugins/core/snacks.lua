@@ -13,7 +13,7 @@ M.opts = {
   picker = { enabled = true },
   scroll = { enabled = true },
   statuscolumn = { enabled = true },
-  image = { enabled = true },
+  image = { enabled = false },
   words = { enabled = true },
   notifier = {
     padding = true,

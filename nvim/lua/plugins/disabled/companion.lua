@@ -1,30 +1,35 @@
 M = {
   'olimorris/codecompanion.nvim',
-  version = '^19.1.0',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
 }
 
-M.init = function()
+M.config = function()
   local cc = require('codecompanion')
   local wk = require('which-key')
   cc.setup({
-    interactions = {
-      chat = {
-        adapter = {
-          name = 'ollama',
-          model = 'qwen3.5:9b',
-          autoload = 'default',
-          enabled = true,
-        },
+    strategies = {
+      inline = {
+        adapter = 'ollama',
       },
     },
-    opts = {
-      log_level = 'info',
-      completion_provider = 'cmp',
-      language = 'Polish',
+    adapters = {
+      ollama = function()
+        return require('codecompanion.adapters').extend('ollama', {
+          schema = {
+            model = {
+              default = 'qcwind/qwen3-8b-instruct-Q4-K-M',
+            },
+          },
+        })
+      end,
+    },
+    display = {
+      inline = {
+        layout = 'vertical',
+      },
     },
   })
   wk.add({
