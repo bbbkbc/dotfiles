@@ -21,6 +21,7 @@
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "9a10e096703966335bd5c46c8c875d5b0690dade" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc" },
   "mason.nvim": { "branch": "main", "commit": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d" },
+  "mermaid.nvim": { "branch": "main", "commit": "01779e3c9f77ce0741f4992536fd0a81b9fb9fef" },
   "mini.nvim": { "branch": "main", "commit": "0caecdd7408bc0a77697a83b931c742fcc5b0349" },
   "neodev.nvim": { "branch": "main", "commit": "46aa467dca16cf3dfe27098042402066d2ae242d" },
   "nvim-aider": { "branch": "main", "commit": "c8a4f952937d54f17dc23bd378e9e3b373f502b2" },

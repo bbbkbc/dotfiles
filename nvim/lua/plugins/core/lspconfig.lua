@@ -17,7 +17,7 @@ local M = {
 }
 
 function M.config()
-  Pick = require('addons.utils').pick
+  local Pick = require('addons.utils').pick
 
   -- LSP Attach Callback
   vim.api.nvim_create_autocmd('LspAttach', {
@@ -39,6 +39,9 @@ function M.config()
       map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
       map('<leader>la', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
       map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+      map('<leader>lr', function()
+        vim.cmd('lsp restart')
+      end, '[L]SP [R]estart')
       --
 
       local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -71,9 +74,9 @@ function M.config()
 
         vim.api.nvim_create_autocmd('LspDetach', {
           group = vim.api.nvim_create_augroup('lsp_detach', { clear = true }),
-          callback = function(event2)
+          callback = function(ev)
             vim.lsp.buf.clear_references()
-            vim.api.nvim_clear_autocmds({ group = 'lsp_highlight', buffer = event2.buf })
+            vim.api.nvim_clear_autocmds({ group = 'lsp_highlight', buffer = ev.buf })
           end,
         })
       end
@@ -155,25 +158,44 @@ function M.config()
       },
     },
     -- python stuff servers and linters
-    -- basedpyright = {},
-    pyright = {
+    basedpyright = {
       settings = {
-        additinalProperties = true,
         python = {
           analysis = {
-            -- autoSearchPaths = true,
-            -- diagnosticMode = 'openFilesOnly',
+            autoSearchPaths = true,
             useLibraryCodeForTypes = true,
-            typeCheckingMode = 'strict', -- "off", "basic", or "strict"
+            typeCheckingMode = 'strict',
+            -- diagnostics = 'workspace',
           },
         },
       },
     },
+    -- pyright = {
+    --   settings = {
+    --     additionalProperties = true,
+    --     python = {
+    --       analysis = {
+    --         autoSearchPaths = true,
+    --         -- autoSearchPaths = true,
+    --         -- diagnosticMode = 'openFilesOnly',
+    --         useLibraryCodeForTypes = true,
+    --         typeCheckingMode = 'strict', -- "off", "basic", or "strict"
+    --       },
+    --     },
+    --   },
+    -- },
+    -- mypy = {
+    --   settings = {
+    --     mypy = {
+    --       strict = true,
+    --     },
+    --   },
+    -- },
     -- ty = {
     --   settings = {
     --     ty = {
-    --       showSyntaxErrors = true,
-    --       completions = { autoImport = true },
+    --       -- showSyntaxErrors = true,
+    --       -- completions = { autoImport = true },
     --     },
     --   },
     -- },

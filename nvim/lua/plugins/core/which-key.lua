@@ -1,6 +1,6 @@
 local M = {
   'folke/which-key.nvim',
-  event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+  -- event = 'VeryLazy', -- Sets the loading event to 'VimEnter'
 }
 
 function M.config()
@@ -45,6 +45,7 @@ function M.config()
     { '<leader>n', group = '[N]otifications', desc = 'Show Notifications', icon = '💡' },
     { '<leader>r', group = '[R]enames', desc = 'Rename stuff', icon = '📝' },
     { '<leader>d', group = '[D]ebugger', desc = '[D]ebugger', icon = '🐞' },
+    { '<leader>m', group = '[M]markdowns', desc = '[M]markdowns tools', icon = '⚙️' },
     -- { '<leader>a', group = '[A]i', desc = '[A]i tools', icon = '🤖' },
   })
 end
